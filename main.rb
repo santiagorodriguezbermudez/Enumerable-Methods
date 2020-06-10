@@ -25,6 +25,18 @@ module Enumerable
     my_each {|el| new_array.push(el) if yield(el)}
     new_array
   end
+
+  def my_all? (arg = nil)
+    if block_given?
+        my_select{|el| yield(el)}.length == self.length
+    else
+        if arg
+            my_select{|el| arg === el}.length == self.length
+        else
+            my_select{|el| true === el}.length == self.length
+        end
+    end
+  end
 end
 
 # Testing comparison
@@ -47,4 +59,20 @@ end
 
 # select test
 # p [1,2,3,4,5].select { |num|  num.even?  }   
-# p [1,2,3,4,5].my_select { |num|  num.even?  }   
+# p [1,2,3,4,5].my_select { |num|  num.even?  }  
+
+# all? test
+p "all results:"
+p %w[ant bear cat].all? { |word| word.length >= 3 } #=> true
+p %w[ant bear cat].all? { |word| word.length >= 4 } #=> false
+p %w[ant bear cat].all?(/t/)                        #=> false
+p [1, 2i, 3.14].all?(Numeric)                       #=> true
+p [nil, true, 99].all?                              #=> false
+p [].all?                                           #=> true
+p "My all results:"
+p %w[ant bear cat].my_all? { |word| word.length >= 3 } #=> true
+p %w[ant bear cat].my_all? { |word| word.length >= 4 } #=> false
+p %w[ant bear cat].my_all?(/t/)                        #=> false
+p [1, 2i, 3.14].my_all?(Numeric)                       #=> true
+p [nil, true, 99].my_all?                              #=> false
+p [].my_all?                                           #=> true
