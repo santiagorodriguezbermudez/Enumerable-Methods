@@ -1,57 +1,23 @@
-# Project Name
+# Enumerable Methods
 
-> One paragraph statement about the project.
+> This project is strictly academic. Its purpose is to replica enumerable methods from Ruby. 
 
-![screenshot](./app_screenshot.png)
-
-Additional description about the project and its features.
+Rebuild the following enumerable methods: my_each, my_each_with_index, my_select, my_all?, my_any?, my_none?, my_count, my_map, my_inject, my_map, my_map!
 
 ## Built With
 
-- Major languages,
-- frameworks,
-- technologies used
-
-## Live Demo
-
-[Live Demo Link](https://livedemo.com)
-
+- Ruby
 
 ## Getting Started
 
-**This is an example of how you may give instructions on setting up your project locally.**
-**Modify this file to match your project, remove sections that don't apply. For example: delete the testing section if the currect project doesn't require testing.**
+Run Ruby locally and execute the main.rb file for using the custom build in methods. 
 
+👤 **Santiago Rodriguez**
 
-To get a local copy up and running follow these simple example steps.
+- Github: [@santiagorodriguezbermudez](https://github.com/santiagorodriguezbermudez)
+- Twitter: [@srba87](https://twitter.com/srba87)
+- Linkedin: [srba87](https://www.linkedin.com/in/srba87/)
 
-### Prerequisites
-
-### Setup
-
-### Install
-
-### Usage
-
-### Run tests
-
-### Deployment
-
-
-
-## Authors
-
-👤 **Author1**
-
-- Github: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- Linkedin: [linkedin](https://linkedin.com/linkedinhandle)
-
-👤 **Author2**
-
-- Github: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- Linkedin: [linkedin](https://linkedin.com/linkedinhandle)
 
 ## 🤝 Contributing
 
@@ -65,9 +31,7 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-- Hat tip to anyone whose code was used
-- Inspiration
-- etc
+- Ocicats team for inspiration
 
 ## 📝 License
 
