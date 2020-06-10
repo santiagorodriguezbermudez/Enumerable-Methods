@@ -37,6 +37,19 @@ module Enumerable
         end
     end
   end
+
+  def my_any? (arg = nil)
+    if block_given?
+        my_select{|el| yield(el)}.length > 0
+    else
+        if arg
+            my_select{|el| arg === el}.length > 0
+        else
+            my_select{|el| true === el}.length > 0
+        end
+    end
+  end
+
 end
 
 # Testing comparison
@@ -62,17 +75,33 @@ end
 # p [1,2,3,4,5].my_select { |num|  num.even?  }  
 
 # all? test
-p "all results:"
-p %w[ant bear cat].all? { |word| word.length >= 3 } #=> true
-p %w[ant bear cat].all? { |word| word.length >= 4 } #=> false
-p %w[ant bear cat].all?(/t/)                        #=> false
-p [1, 2i, 3.14].all?(Numeric)                       #=> true
-p [nil, true, 99].all?                              #=> false
-p [].all?                                           #=> true
-p "My all results:"
-p %w[ant bear cat].my_all? { |word| word.length >= 3 } #=> true
-p %w[ant bear cat].my_all? { |word| word.length >= 4 } #=> false
-p %w[ant bear cat].my_all?(/t/)                        #=> false
-p [1, 2i, 3.14].my_all?(Numeric)                       #=> true
-p [nil, true, 99].my_all?                              #=> false
-p [].my_all?                                           #=> true
+# p "all results:"
+# p %w[ant bear cat].all? { |word| word.length >= 3 } #=> true
+# p %w[ant bear cat].all? { |word| word.length >= 4 } #=> false
+# p %w[ant bear cat].all?(/t/)                        #=> false
+# p [1, 2i, 3.14].all?(Numeric)                       #=> true
+# p [nil, true, 99].all?                              #=> false
+# p [].all?                                           #=> true
+# p "My all results:"
+# p %w[ant bear cat].my_all? { |word| word.length >= 3 } #=> true
+# p %w[ant bear cat].my_all? { |word| word.length >= 4 } #=> false
+# p %w[ant bear cat].my_all?(/t/)                        #=> false
+# p [1, 2i, 3.14].my_all?(Numeric)                       #=> true
+# p [nil, true, 99].my_all?                              #=> false
+# p [].my_all?                                           #=> true
+
+# any? test
+p "any results:"
+p %w[ant bear cat].any? { |word| word.length >= 3 } #=> true
+p %w[ant bear cat].any? { |word| word.length >= 4 } #=> true
+p %w[ant bear cat].any?(/d/)                        #=> false
+p [nil, true, 99].any?(Integer)                     #=> true
+p [nil, true, 99].any?                              #=> true
+p [].any?                                           #=> false
+p "my_any results:"
+p %w[ant bear cat].my_any? { |word| word.length >= 3 } #=> true
+p %w[ant bear cat].my_any? { |word| word.length >= 4 } #=> true
+p %w[ant bear cat].my_any?(/d/)                        #=> false
+p [nil, true, 99].my_any?(Integer)                     #=> true
+p [nil, true, 99].my_any?                              #=> true
+p [].my_any?                                           #=> false
