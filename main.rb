@@ -91,10 +91,10 @@ module Enumerable
         end    
     end
 
-    def my_map
+    def my_map(*args)
         return self.to_enum unless block_given?
         new_arr = []
-        self.my_each {|el| new_arr.push(yield(el))}
+        self.my_each {|el| new_arr.push(args[0]? args[0].call(el) : yield(el))}
         new_arr
     end
 
@@ -117,24 +117,15 @@ module Enumerable
                 memo
             end
         end
-       
     end
 end
 
-#def my_inject(*args)
-#my_inject() {}
-
-# Sum some numbers
-p (5..10).my_inject(:+)                             #=> 45
-# Same using a block and inject
-p (5..10).my_inject { |sum, n| sum + n }            #=> 45
-# Multiply some numbers
-p (5..10).my_inject(1, :*)                          #=> 151200
-# Same using a block
-p (5..10).my_inject(1) { |product, n| product * n } #=> 151200
-# find the longest word
-longest = %w{ cat sheep bear }.my_inject do |memo, word|
-   memo.length > word.length ? memo : word
+def multiply_els (arr)
+    arr.my_inject(1, :*)
 end
-p longest                                        #=> "sheep"
 
+prov_var = Proc.new {|n| puts n*2}
+
+p multiply_els([2,4,5])
+
+p [1,2,3].map(&prov_var)
