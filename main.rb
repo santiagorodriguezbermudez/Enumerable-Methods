@@ -63,4 +63,19 @@ module Enumerable
             !cond
         end
     end
+
+    def my_any? (arg = nil)
+        cond = false
+        if block_given?
+            self.my_each{|el| cond = cond || yield(el)}
+            cond
+        elsif arg
+            self.my_each{|el| cond = cond || arg===el}
+            cond
+        else
+            self.my_each{|el| cond = cond || true === el}
+            cond
+        end     
+    end
 end
+
