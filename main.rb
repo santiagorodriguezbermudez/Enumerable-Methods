@@ -77,5 +77,18 @@ module Enumerable
             cond
         end     
     end
+
+    def my_count (arg = nil)
+        accumulator = 0
+        if block_given?
+            self.my_each{|el| accumulator += 1 if yield(el)}
+            accumulator
+        elsif arg
+            self.my_each{|el| accumulator += 1 if arg==el}
+            accumulator
+        else
+            self.length
+        end    
+    end
 end
 
