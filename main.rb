@@ -90,5 +90,14 @@ module Enumerable
             self.length
         end    
     end
+
+    def my_map
+        return self.to_enum unless block_given?
+        new_arr = []
+        self.my_each {|el| new_arr.push(yield(el))}
+        new_arr
+    end
 end
+
+
 
