@@ -103,6 +103,8 @@ module Enumerable
             memo = args[0] || ((self.first.is_a? Numeric) ? 0 : self.first)
             self.my_each{|el| memo = yield(memo, el)}
             memo
+        elsif args.length == 0
+            raise(LocalJumpError.new, "No block or argument given")
         else
             case args.length
             when 1
@@ -124,8 +126,10 @@ def multiply_els (arr)
     arr.my_inject(1, :*)
 end
 
-prov_var = Proc.new {|n| puts n*2}
-
 p multiply_els([2,4,5])
 
+# Testing my_map against map with a given proc
+prov_var = Proc.new {|n| puts n*2}
+p [1,2,3].my_map(&prov_var)
 p [1,2,3].map(&prov_var)
+
