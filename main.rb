@@ -140,10 +140,8 @@ end
 p "map results:"
 p a = [ "a", "b", "c", "d" ]
 p a.map {|x| x + "!"}           #=> ["a!", "b!", "c!", "d!"]
-p a.map.with_index {|x, i| x * i}   #=> ["", "b", "cc", "ddd"]
 p a                                 #=> ["a", "b", "c", "d"]
 p "my_map results:"
 p a = [ "a", "b", "c", "d" ]
 p a.my_map {|x| x + "!"}           #=> ["a!", "b!", "c!", "d!"]
-p a.my_map.with_index {|x, i| x * i}   #=> ["", "b", "cc", "ddd"]
 p a                                 #=> ["a", "b", "c", "d"]
