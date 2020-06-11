@@ -85,21 +85,18 @@ module Enumerable
   end
 
   def my_inject(*args)
-    if args && !args[0].is_a? Symbol
-      memo=args[0]
-    elsif first.is_a? Numeric
-      memo=0
-    else
-      memo=first
-    end
+    self_copy = to_a
     if block_given?
-      my_each { |el| memo = yield(memo, el) }
+      memo = args[0] || self_copy.shift
+      self_copy.my_each { |el| memo = yield(memo, el) }
     elsif args.empty?
       raise(LocalJumpError.new, 'No block or argument given')
     elsif args.length == 1
-      my_each { |el| memo = memo.send(args[0], el) }
+      memo = self_copy.shift
+      self_copy.my_each { |el| memo = memo.send(args[0], el) }
     else
-      my_each { |el| memo = memo.send(args[1], el) }
+      memo = self_copy.shift
+      self_copy.my_each { |el| memo = memo.send(args[1], el) }
     end
     memo
   end
@@ -108,5 +105,3 @@ end
 def multiply_els(arr)
   arr.my_inject(1, :*)
 end
-
-p (5..10).my_inject(:+)
