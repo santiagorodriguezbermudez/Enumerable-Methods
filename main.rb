@@ -98,27 +98,38 @@ module Enumerable
         new_arr
     end
 
-    def my_inject(acum = nil, sym = nil)
+    def my_inject(*args)
         if block_given?
-            memo = acum || ((self.first.is_a? Numeric) ? 0 : self.first)
+            memo = args[0] || ((self.first.is_a? Numeric) ? 0 : self.first)
             self.my_each{|el| memo = yield(memo, el)}
             memo
-        end 
-            # if (acum && sym.is_a? Symbol)
-
-        #     elsif  acum.is_a? Symbol 
-
-        #     end
-        # end
+        else
+            case args.length
+            when 1
+                if args[0].is_a? Symbol
+                    memo = ((self.first.is_a? Numeric) ? 0 : self.first)
+                    self.my_each {|el| memo = memo&.send(args[0], el)}
+                    memo
+                end
+            when 2
+                memo = args[0]
+                self.my_each {|el| memo = memo&.send(args[1], el)}
+                memo
+            end
+        end
+       
     end
 end
 
+#def my_inject(*args)
+#my_inject() {}
+
 # Sum some numbers
-# p (5..10).inject(:+)                             #=> 45
+p (5..10).my_inject(:+)                             #=> 45
 # Same using a block and inject
 p (5..10).my_inject { |sum, n| sum + n }            #=> 45
 # Multiply some numbers
-# p(5..10).reduce(1, :*)                          #=> 151200
+p (5..10).my_inject(1, :*)                          #=> 151200
 # Same using a block
 p (5..10).my_inject(1) { |product, n| product * n } #=> 151200
 # find the longest word
