@@ -12,6 +12,12 @@ Rebuild the following enumerable methods: my_each, my_each_with_index, my_select
 
 Run Ruby locally and execute the main.rb file for using the custom build in methods. 
 
+👤 **Abel Lavieri**
+
+- Github: [@alvp01](https://github.com/alvp01)
+- Twitter: [@alvp01](https://twitter.com/alvp01)
+- Linkedin: [alvp01](https://linkedin.com/in/alvp01)
+
 👤 **Santiago Rodriguez**
 
 - Github: [@santiagorodriguezbermudez](https://github.com/santiagorodriguezbermudez)
